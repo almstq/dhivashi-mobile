@@ -1,33 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.api.routers import orders, vendors, delivery
+app = FastAPI(title="Dhivashi API v0.1 - Male MVP")
 
-app = FastAPI(
-    title="Dhivashi Backend API",
-    description="Agentic-first backend for the Maldives Dhivashi platform.",
-    version="0.1.0",
-)
-
-# CORS middleware for Next.js frontend and Flutter apps
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# Include routers
-app.include_router(orders.router)
-app.include_router(vendors.router)
-app.include_router(delivery.router)
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 @app.get("/")
-def root():
-    return {"message": "Welcome to Dhivashi API (Phase 0 MVP)"}
+async def root():
+    return {"message": "Dhivashi LIVE", "phase": "0", "city": "Male", "rider_commission": "80%"}
 
-@app.get("/health")
-def health_check():
-    return {"status": "ok", "components": ["fastapi", "langgraph_stubs"]}
+@app.post("/orders")
+async def create_order(data: dict):
+    total = data.get("total", 0)
+    return {
+        "order_id": "dhv-123", 
+        "rider_commission": total * 0.8,
+        "platform_commission": total * 0.2,
+        "status": "assigned"
+    }
 
-# To run locally: uvicorn backend.api.main:app --reload
+@app.get("/vendors")
+async def get_vendors():
+    return [{"id": "male-fmcg-1", "name": "Male Rice Shop", "phone": "+9609876543"}]
+
+print("Dhivashi API starting...")

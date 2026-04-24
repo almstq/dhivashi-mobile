@@ -12,6 +12,8 @@ void main() async {
   runApp(const DhivashiCustomerApp());
 }
 
+import 'screens/auth_screen.dart';
+
 class DhivashiCustomerApp extends StatelessWidget {
   const DhivashiCustomerApp({super.key});
 
@@ -23,7 +25,7 @@ class DhivashiCustomerApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const CustomerHomeScreen(),
+      home: const AuthScreen(),
     );
   }
 }
