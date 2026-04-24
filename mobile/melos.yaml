@@ -2,14 +2,13 @@ name: dhivashi_mobile
 repository: https://github.com/dhivashi/dhivashi-mobile
 
 packages:
-  - customer
-  - vendor
-  - rider
+  - app/**
   - packages/**
+  - plugins/**
 
 command:
   bootstrap:
-    usePubspecOverrides: true
+    runPubGetInParallel: false  # Fixes race [web:255]
 
 scripts:
   analyze:

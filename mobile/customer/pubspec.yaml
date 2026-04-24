@@ -1,19 +1,22 @@
-name: customer
-description: Dhivashi Customer App
-version: 1.0.0
+name: dhivashi_mobile
+description: Dhivashi Flutter monorepo
 publish_to: 'none'
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared:
-    path: ../packages/shared
-  ui:
-    path: ../packages/ui
+  cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^4.0.0
+  melos: ^6.0.0
+
+flutter:
+  uses-material-design: true
