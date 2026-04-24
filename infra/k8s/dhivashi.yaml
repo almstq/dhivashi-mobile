@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dhivashi-backend
+  labels:
+    app: dhivashi-backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: dhivashi-backend
+  template:
+    metadata:
+      labels:
+        app: dhivashi-backend
+    spec:
+      containers:
+      - name: fastapi
+        image: ghcr.io/dhivashi/backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: SUPABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: dhivashi-secrets
+              key: SUPABASE_URL
+        - name: SUPABASE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dhivashi-secrets
+              key: SUPABASE_KEY
+        - name: LANGCHAIN_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: dhivashi-secrets
+              key: LANGCHAIN_API_KEY
+        - name: LANGCHAIN_TRACING_V2
+          value: "true"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dhivashi-backend-svc
+spec:
+  selector:
+    app: dhivashi-backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP

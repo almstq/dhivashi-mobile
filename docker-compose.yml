@@ -1,0 +1,30 @@
+services:
+  db:
+    image: supabase/postgres:15.1.0.147  # Fixed tag
+    ports:
+      - "54322:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      SUPABASE_AUTH_HOOK: http://auth:9999/auth/v1/callback
+    volumes:
+      - ./supabase/volumes/db/init:/docker-entrypoint-initdb.d  # Migrations
+
+  realtime:
+    image: supabase/realtime:v2.34.47
+    ports:
+      - "9999:4000"
+
+  gotrue:
+    image: supabase/gotrue:v2.153.0
+    ports:
+      - "9998:8000"
+
+  postgrest:
+    image: postgrest/postgrest:v12.2.0
+    ports:
+      - "3000:3000"
+
+  storage:
+    image: supabase/storage-api:v1.0.8
+    ports:
+      - "5000:5000"

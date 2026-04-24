@@ -1,0 +1,19 @@
+name: rider
+description: Dhivashi Rider App
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared:
+    path: ../packages/shared
+  ui:
+    path: ../packages/ui
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,0 +1,25 @@
+name: dhivashi_mobile
+repository: https://github.com/dhivashi/dhivashi-mobile
+
+packages:
+  - customer
+  - vendor
+  - rider
+  - packages/**
+
+command:
+  bootstrap:
+    usePubspecOverrides: true
+
+scripts:
+  analyze:
+    run: melos exec -c 1 -- "flutter analyze"
+    description: Run static analysis for all packages.
+    
+  test:
+    run: melos exec -c 1 -- "flutter test"
+    description: Run tests for all packages.
+    
+  build_runner:
+    run: melos exec -c 1 --depends-on="build_runner" -- "dart run build_runner build --delete-conflicting-outputs"
+    description: Run build_runner in all dependent packages.

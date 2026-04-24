@@ -1,0 +1,6 @@
+{
+  "name": "dhivashi-agentic",
+  "version": "0.1.0",
+  "scripts": { "dev": "docker-compose up", "build": "make build" },
+  "devDependencies": { "tailwindcss": "^3.4.0", "@types/node": "^20" }
+}
