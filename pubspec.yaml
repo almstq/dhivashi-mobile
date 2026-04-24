@@ -1,3 +1,4 @@
+HEAD
 name: dhivashi_mobile
 description: Dhivashi mobile app
 publish_to: 'none'
@@ -13,3 +14,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+name: dhivashi_root
+description: Root workspace placeholder
+publish_to: 'none'
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+ d682691 (commit)
